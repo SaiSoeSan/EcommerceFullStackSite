@@ -67,7 +67,7 @@ export default {
       }
       const auth = getAuth();
       const actionCodeSettings = {
-        url: `https://curly-zebra-9q65qv5756x2xqjx-8080.app.github.dev/products/${this.$route.params.id}`,
+        url: `https://ecommercefullstacksite.onrender.com/products/${this.$route.params.id}`,
         handleCodeInApp: true,
       };
       await sendSignInLinkToEmail(auth,email,actionCodeSettings);
