@@ -25,6 +25,7 @@ async function startServer() {
 
   const app = express();
   // Middleware to parse JSON bodies
+  app.use(express.json());
 
   // Serve static files from the Vue.js build folder
   app.use(express.static(path.join(__dirname, "../dist")));
@@ -119,6 +120,12 @@ async function startServer() {
     const user = await collection.findOne({ id: userId });
     const populatedCart = await populatedCartItems(user?.cartItems || []);
     res.json(populatedCart);
+  });
+
+  //send the index.html file for any other route
+
+  app.all("/{*any}", (req, res) => {
+    res.sendFile(path.join(__dirname, "../dist", "index.html"));
   });
 
   app.listen(port, () => {
